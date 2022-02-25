@@ -1,7 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import BookCard from './BookCard';
-import * as BooksApi from '../BooksAPI.js'
+// noinspection ES6PreferShortImport
+import {getAll} from '../BooksAPI.js'
 
 export default class BooksIndex extends React.Component {
 
@@ -10,7 +11,12 @@ export default class BooksIndex extends React.Component {
   }
 
   async componentDidMount() {
-    const books = await BooksApi.getAll()
+    const books = await getAll()
+    this.setState({books})
+  }
+
+  async componentDidUpdate() {
+    const books = await getAll()
     this.setState({books})
   }
 

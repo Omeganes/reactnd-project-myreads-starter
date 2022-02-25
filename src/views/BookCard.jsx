@@ -1,6 +1,17 @@
 import React from 'react';
+// noinspection ES6PreferShortImport
+import {update} from '../BooksAPI'
 
 export default class BookCard extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.handleShelfChange = this.handleShelfChange.bind(this);
+  }
+
+  async handleShelfChange(ev) {
+    await update(this.props.book, ev.target.value)
+  }
 
   render() {
 
@@ -16,7 +27,7 @@ export default class BookCard extends React.Component {
               backgroundImage: `url(${book.imageLinks.smallThumbnail})`
             }}/>
             <div className="book-shelf-changer">
-              <select>
+              <select onChange={this.handleShelfChange} defaultValue={book.shelf}>
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
