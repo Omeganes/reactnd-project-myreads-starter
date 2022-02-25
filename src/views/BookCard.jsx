@@ -27,7 +27,7 @@ export default class BookCard extends React.Component {
               backgroundImage: `url(${book.imageLinks.smallThumbnail})`
             }}/>
             <div className="book-shelf-changer">
-              <select onChange={this.handleShelfChange} defaultValue={book.shelf}>
+              <select onChange={this.handleShelfChange} defaultValue={book.shelf || 'none'}>
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
@@ -37,7 +37,7 @@ export default class BookCard extends React.Component {
             </div>
           </div>
           <div className="book-title">{book.title}</div>
-          <div className="book-authors">{book.authors.map(author => author)}</div>
+          <div className="book-authors">{book.authors?.map(author => author)}</div>
         </div>
       </li>
     )
