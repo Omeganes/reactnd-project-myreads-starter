@@ -37,7 +37,7 @@ class BooksApp extends React.Component {
         <BrowserRouter>
           <Routes>
             <Route path="/" index element={<BooksIndex books={this.state.books} fetchBooks={this.fetchBooks} />} />
-            <Route path="/search" element={<BookSearch books={this.state.books} />} />
+            <Route path="/search" element={<BookSearch books={this.state.books} fetchBooks={this.fetchBooks} />} />
           </Routes>
         </BrowserRouter>
       </div>

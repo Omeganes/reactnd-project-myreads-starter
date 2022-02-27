@@ -24,6 +24,8 @@ export default class BookSearch extends React.Component {
   }
 
   render() {
+    const {books} = this.props;
+
     return(
       <div className="search-books">
         <div className="search-books-bar">
@@ -38,7 +40,10 @@ export default class BookSearch extends React.Component {
         <div className="search-books-results">
           <ol className="books-grid">
             {
-              this.state.books?.map((book, index) => <BookCard key={index} book={book} />)
+              this.state.books?.map((book, index) =>
+                <BookCard key={index} fetchBooks={this.props.fetchBooks}
+                          book={book} shelf={books.find(el => el.id === book.id)?.shelf}   />
+              )
             }
           </ol>
         </div>

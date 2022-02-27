@@ -20,7 +20,7 @@ export default class BooksIndex extends React.Component {
                 <ol className="books-grid">
                   {
                     books.filter(book => book.shelf === 'currentlyReading').map( (book, index) => (
-                      <BookCard key={index} book={book} fetchBooks={this.props.fetchBooks} />
+                      <BookCard key={index} book={book} shelf={book.shelf} fetchBooks={this.props.fetchBooks} />
                     ))
                   }
                 </ol>
@@ -32,7 +32,7 @@ export default class BooksIndex extends React.Component {
                 <ol className="books-grid">
                   {
                     books.filter(book => book.shelf === 'wantToRead').map( (book, index) => (
-                      <BookCard key={index} book={book} fetchBooks={this.props.fetchBooks} />
+                      <BookCard key={index} book={book} shelf={book.shelf} fetchBooks={this.props.fetchBooks} />
                     ))
                   }
                 </ol>
@@ -44,7 +44,7 @@ export default class BooksIndex extends React.Component {
                 <ol className="books-grid">
                   {
                     books.filter(book => book.shelf === 'read').map( (book, index) => (
-                      <BookCard key={index} book={book} fetchBooks={this.props.fetchBooks} />
+                      <BookCard key={index} book={book} shelf={book.shelf} fetchBooks={this.props.fetchBooks} />
                     ))
                   }
                 </ol>
