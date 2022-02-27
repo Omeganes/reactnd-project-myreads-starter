@@ -15,8 +15,12 @@ export default class BookSearch extends React.Component {
   }
 
   async handleChange(ev) {
-    const books = await search(ev.target.value)
-    this.setState({books})
+    const response = await search(ev.target.value)
+    if(response?.error) {
+      this.setState({books: []})
+    } else {
+      this.setState({books: response})
+    }
   }
 
   render() {
