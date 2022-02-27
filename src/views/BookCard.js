@@ -11,6 +11,7 @@ export default class BookCard extends React.Component {
 
   async handleShelfChange(ev) {
     await update(this.props.book, ev.target.value)
+    await this.props.fetchBooks()
   }
 
   render() {

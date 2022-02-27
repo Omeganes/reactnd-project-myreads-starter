@@ -1,26 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import BookCard from './BookCard';
-// noinspection ES6PreferShortImport
-import {getAll} from '../BooksAPI.js'
 
 export default class BooksIndex extends React.Component {
 
-  state = {
-    books: []
-  }
-
-  async componentDidMount() {
-    const books = await getAll()
-    this.setState({books})
-  }
-
-  async componentDidUpdate() {
-    const books = await getAll()
-    this.setState({books})
-  }
-
   render() {
+    const {books} = this.props;
+
     return(
       <div className="list-books">
         <div className="list-books-title">
@@ -33,8 +19,8 @@ export default class BooksIndex extends React.Component {
               <div className="bookshelf-books">
                 <ol className="books-grid">
                   {
-                    this.state.books.filter(book => book.shelf === 'currentlyReading').map( (book, index) => (
-                      <BookCard key={index} book={book} />
+                    books.filter(book => book.shelf === 'currentlyReading').map( (book, index) => (
+                      <BookCard key={index} book={book} fetchBooks={this.props.fetchBooks} />
                     ))
                   }
                 </ol>
@@ -45,8 +31,8 @@ export default class BooksIndex extends React.Component {
               <div className="bookshelf-books">
                 <ol className="books-grid">
                   {
-                    this.state.books.filter(book => book.shelf === 'wantToRead').map( (book, index) => (
-                      <BookCard key={index} book={book} />
+                    books.filter(book => book.shelf === 'wantToRead').map( (book, index) => (
+                      <BookCard key={index} book={book} fetchBooks={this.props.fetchBooks} />
                     ))
                   }
                 </ol>
@@ -57,8 +43,8 @@ export default class BooksIndex extends React.Component {
               <div className="bookshelf-books">
                 <ol className="books-grid">
                   {
-                    this.state.books.filter(book => book.shelf === 'read').map( (book, index) => (
-                      <BookCard key={index} book={book} />
+                    books.filter(book => book.shelf === 'read').map( (book, index) => (
+                      <BookCard key={index} book={book} fetchBooks={this.props.fetchBooks} />
                     ))
                   }
                 </ol>
